@@ -31,40 +31,40 @@ Assume that a large supermarket tracks sales data by stock-keeping unit (SKU) fo
 
 Let the database of transactions consist of following itemsets:
 
-Itemsets
-{1,2,3,4}
-{1,2,4}
-{1,2}
-{2,3,4}
-{2,3}
-{3,4}
-{2,4}
+	Itemsets
+	{1,2,3,4}
+	{1,2,4}
+	{1,2}
+	{2,3,4}
+	{2,3}
+	{3,4}
+	{2,4}
 We will use Apriori to determine the frequent item sets of this database. To do this, we will say that an item set is frequent if it appears in at least 3 transactions of the database: the value 3 is the support threshold.
 
 The first step of Apriori is to count up the number of occurrences, called the support, of each member item separately. By scanning the database for the first time, we obtain the following result
 
-Item	Support
-{1}	3
-{2}	6
-{3}	4
-{4}	5
+	Item	Support
+	{1}	3
+	{2}	6
+	{3}	4
+	{4}	5
 All the itemsets of size 1 have a support of at least 3, so they are all frequent.
 
 The next step is to generate a list of all pairs of the frequent items.
 
 For example, regarding the pair {1,2}: the first table of Example 2 shows items 1 and 2 appearing together in three of the itemsets; therefore, we say item {1,2} has support of three.
 
-Item	Support
-{1,2}	3
-{1,3}	1
-{1,4}	2
-{2,3}	3
-{2,4}	4
-{3,4}	3
+	Item	Support
+	{1,2}	3
+	{1,3}	1
+	{1,4}	2
+	{2,3}	3
+	{2,4}	4
+	{3,4}	3
 The pairs {1,2}, {2,3}, {2,4}, and {3,4} all meet or exceed the minimum support of 3, so they are frequent. The pairs {1,3} and {1,4} are not. Now, because {1,3} and {1,4} are not frequent, any larger set which contains {1,3} or {1,4} cannot be frequent. In this way, we can prune sets: we will now look for frequent triples in the database, but we can already exclude all the triples that contain one of these two pairs:
 
-Item	Support
-{2,3,4}	2
+	Item	Support
+	{2,3,4}	2
 in the example, there are no frequent triplets. {2,3,4} is below the minimal threshold, and the other triplets were excluded because they were super sets of pairs that were already below the threshold.
 
 We have thus determined the frequent sets of items in the database, and illustrated how some items were not counted because one of their subsets was already known to be below the threshold.
